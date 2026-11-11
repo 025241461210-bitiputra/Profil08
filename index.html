@@ -1,0 +1,614 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Futsal Player Portfolio</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #07152c;
+  color: white;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 8%;
+  background: #091b35;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: bold;
+  color: #60a5fa;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 18px;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #60a5fa;
+}
+
+.hero {
+  min-height: 90vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding: 65px 8%;
+  background: linear-gradient(120deg,#07152c,#102c50);
+}
+
+.hero-text {
+  max-width: 600px;
+}
+
+.hero h4 {
+  color: #60a5fa;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(38px,6vw,65px);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.hero h1 span {
+  color: #60a5fa;
+}
+
+.hero p {
+  color: #cbd5e1;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.btn {
+  display: inline-block;
+  background: #2563eb;
+  padding: 14px 25px;
+  border-radius: 7px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #1d4ed8;
+}
+
+.hero-image {
+  width: 340px;
+  height: 430px;
+  border: 3px solid #60a5fa;
+  border-radius: 18px;
+  background: #102746;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  color: #94a3b8;
+}
+
+section {
+  padding: 80px 8%;
+}
+
+.judul {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.garis {
+  width: 65px;
+  height: 4px;
+  background: #60a5fa;
+  margin-bottom: 35px;
+}
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
+}
+
+.about p {
+  color: #cbd5e1;
+  line-height: 1.9;
+}
+
+.data {
+  background: #102746;
+  padding: 25px;
+  border-radius: 12px;
+}
+
+.data p {
+  padding: 12px 0;
+  border-bottom: 1px solid #29415f;
+}
+
+.data strong {
+  color: #60a5fa;
+}
+
+#prestasi {
+  background: #0b1e38;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 22px;
+}
+
+.card {
+  background: #102746;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-7px);
+}
+
+.card iframe {
+  width: 100%;
+  height: 240px;
+  border: none;
+  background: #07152c;
+}
+
+.card-content {
+  padding: 18px;
+}
+
+.card h3 {
+  color: #60a5fa;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* GRAFIK BOLA INTERAKTIF */
+
+#skill {
+  text-align: center;
+}
+
+.ball-area {
+  background: #102746;
+  border-radius: 18px;
+  padding: 35px 20px;
+}
+
+.ball-area p {
+  color: #cbd5e1;
+  margin: 12px 0;
+}
+
+.ball-container {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  background: #07152c;
+  border: 2px solid #2563eb;
+  border-radius: 15px;
+  margin: 25px 0;
+}
+
+.football {
+  position: absolute;
+  font-size: 42px;
+  cursor: pointer;
+  user-select: none;
+  transform: translate(-50%,-50%);
+  transition: transform .2s;
+  animation: bounce 1s infinite alternate;
+}
+
+.football:hover {
+  transform: translate(-50%,-50%) scale(1.4);
+}
+
+@keyframes bounce {
+  from { margin-top: -5px; }
+  to { margin-top: 5px; }
+}
+
+.ball-button {
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 14px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 8px;
+}
+
+.ball-button:hover {
+  background: #1d4ed8;
+}
+
+#ballCount {
+  font-size: 30px;
+  color: #60a5fa;
+  font-weight: bold;
+}
+
+/* KONTAK */
+
+.contact {
+  text-align: center;
+  background: #102746;
+  border-radius: 15px;
+  padding: 40px 20px;
+}
+
+.contact p {
+  color: #cbd5e1;
+  margin: 15px;
+}
+
+.contact a {
+  color: #60a5fa;
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #091b35;
+  color: #94a3b8;
+  line-height: 1.8;
+}
+
+@media(max-width:800px) {
+  nav {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  nav a {
+    margin: 0 5px;
+    font-size: 12px;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-image {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+  <div class="logo">MY FUTSAL.</div>
+
+  <div>
+    <a href="#home">Home</a>
+    <a href="#about">Profil</a>
+    <a href="#prestasi">Galeri</a>
+    <a href="#skill">Skill</a>
+    <a href="#contact">Kontak</a>
+  </div>
+</nav>
+
+<!-- HOME -->
+
+<div class="hero" id="home">
+
+  <div class="hero-text">
+    <h4>WELCOME TO MY PORTFOLIO</h4>
+
+    <h1>
+      FUTSAL PLAYER
+      <span>PORTFOLIO</span>
+    </h1>
+
+    <p>
+      Seorang mahasiswa yang memiliki passion
+      dalam dunia olahraga, khususnya futsal.
+      Bermain sebagai Pivot bersama tim futsal
+      kampus dan terus mengembangkan kemampuan
+      dalam kerja sama, disiplin, dan permainan.
+    </p>
+
+    <a href="#about" class="btn">
+      LIHAT PROFIL SAYA
+    </a>
+  </div>
+
+  <div class="hero-image">
+    <div>
+      <h2>⚽ PLAYER PROFILE</h2>    <p>https://drive.google.com/file/d/1ViDnrUMcKlqsSeZTYVxHtT3tY3vOsrdt/view?usp=drivesdk.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- PROFIL -->
+
+<section id="about">
+
+  <h2 class="judul">TENTANG SAYA</h2>
+  <div class="garis"></div>
+
+  <div class="about">
+
+    <div>
+      <h2>Passion, Teamwork, Discipline.</h2>
+      <br>
+
+      <p>
+        Saya merupakan mahasiswa yang memiliki
+        ketertarikan besar terhadap olahraga futsal.
+
+        Saya bermain sebagai Pivot dan aktif
+        mengembangkan kemampuan bersama tim futsal.
+
+        Bagi saya, futsal bukan hanya olahraga,
+        tetapi juga tempat belajar tentang kerja sama,
+        tanggung jawab, disiplin, dan semangat
+        pantang menyerah.
+      </p>
+    </div>
+
+    <div class="data">
+      <p><strong>Nama:</strong>iputra</p>
+      <p><strong>Kampus:</strong> sekolah tinggi multimedia>
+      <p><strong>Program Studi:</strong> menejemen informasi komunikasi</p>
+      <p><strong>Posisi:</strong> Pivot</p>
+      <p><strong>Tim:</strong> Tim Futsal stmm</p>
+      <p><strong>Kompetisi:</strong> Campus League ragional Yogyakarta</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALERI FOTO DAN VIDEO -->
+
+<section id="prestasi">
+
+  <h2 class="judul">GALERI FOTO & VIDEO</h2>
+  <div class="garis"></div>
+
+  <div class="cards" id="gallery"></div>
+
+</section>
+
+<!-- SKILL / GRAFIK BOLA -->
+
+<section id="skill">
+
+  <h2 class="judul">INTERACTIVE FOOTBALL</h2>
+  <div class="garis"></div>
+
+  <div class="ball-area">
+
+    <h2>⚽ Football Click Challenge</h2>
+
+    <p>
+      Klik bola untuk membuat bola bertambah banyak!
+    </p>
+
+    <div id="ballCount">1</div>
+    <p>Total Bola</p>
+
+    <div class="ball-container" id="ballContainer">
+
+      <span class="football"
+        style="left:50%;top:50%;"
+        onclick="addBalls()">
+        ⚽
+      </span>
+
+    </div>
+
+    <button class="ball-button" onclick="addBalls()">
+      TAMBAH BOLA ⚽
+    </button>
+
+    <button class="ball-button" onclick="resetBalls()">
+      RESET BOLA
+    </button>
+
+  </div>
+
+</section>
+
+<!-- KONTAK -->
+
+<section id="contact">
+
+  <div class="contact">
+
+    <h2 class="judul">LET'S CONNECT</h2>
+
+    <p>
+      Terima kasih telah mengunjungi
+      portfolio futsal saya.
+    </p>
+
+    <p>
+      WhatsApp:
+      <a href="#">Tambahkan nomor WhatsApp</a>
+    </p>
+
+    <p>
+      Instagram:
+      <a href="#">Tambahkan Instagram</a>
+    </p>
+
+    <p>
+      Email:
+      <a href="#">Tambahkan email</a>
+    </p>
+
+  </div>
+
+</section>
+
+<footer>
+  <p>© 2026 Personal Futsal Portfolio</p>
+  <p>Built with passion ⚽</p>
+</footer>
+
+<script>
+
+/* GOOGLE DRIVE GALLERY */
+
+const files = [
+  "1yKIvcbRIRpIATykAWDHT5iULMm_vby37",
+  "1r6oEbix4uKqlbljHRA7a5cWDk_xS-NDl",
+  "1KmzqxdBz3HkN0yT3Yivl3nDTOazP80tD",
+  "1p0RNWRl7NsjEM_vAwkmF5kLqYfwyKSLL",
+  "1cHSOFNQTZqElcQ85AGPZ7V3678KHyiNF",
+  "1ViDnrUMcKlqsSeZTYVxHtT3tY3vOsrdt",
+  "1QsI6HM7yGjeb2xkwpkQ_-ILsMk9GO3-6",
+  "1RCiRsyC4rftE2UaM7ASKj2FlHlOnlrJI",
+  "1gYKEx_kW9Eg611B1OboiNOtrTPUL44gr",
+  "1DmIeZ3uove7-N-9RCNvuhQpdVxoTY0qY",
+  "1rHlVMnIObkkq2BwesCncnb8nT6xujTS3"
+];
+
+const gallery = document.getElementById("gallery");
+
+files.forEach((id, index) => {
+
+  const card = document.createElement("div");
+
+  card.className = "card";
+
+  card.innerHTML = `
+    <iframe
+      src="https://drive.google.com/file/d/${id}/preview"
+      allow="autoplay"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
+
+    <div class="card-content">
+      <h3>Futsal Moment ${index + 1}</h3>
+      <p>
+        Dokumentasi perjalanan,
+        pertandingan, dan momen bersama tim futsal.
+      </p>
+    </div>
+  `;
+
+  gallery.appendChild(card);
+
+});
+
+
+/* INTERACTIVE FOOTBALL */
+
+let totalBalls = 1;
+
+const container = document.getElementById("ballContainer");
+const counter = document.getElementById("ballCount");
+
+function addBalls() {
+
+  // Maksimal 60 bola agar animasi tetap ringan
+  const amount = Math.min(5, 60 - totalBalls);
+
+  for (let i = 0; i < amount; i++) {
+
+    if (totalBalls >= 60) break;
+
+    const ball = document.createElement("span");
+
+    ball.className = "football";
+    ball.innerHTML = "⚽";
+
+    ball.style.left =
+      (5 + Math.random() * 90) + "%";
+
+    ball.style.top =
+      (8 + Math.random() * 84) + "%";
+
+    ball.onclick = addBalls;
+
+    container.appendChild(ball);
+
+    totalBalls++;
+
+  }
+
+  counter.innerText = totalBalls;
+
+}
+
+function resetBalls() {
+
+  container.innerHTML = "";
+
+  totalBalls = 1;
+
+  const ball = document.createElement("span");
+
+  ball.className = "football";
+  ball.innerHTML = "⚽";
+  ball.style.left = "50%";
+  ball.style.top = "50%";
+  ball.onclick = addBalls;
+
+  container.appendChild(ball);
+
+  counter.innerText = totalBalls;
+
+}
+
+</script>
+
+</body>
+</html>
+
